@@ -1,0 +1,45 @@
+<!doctype html>
+<html dir="ltr" lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Custom Dialog</title>
+    <style>
+      @import '/base.css';
+    </style>
+    <script type="module" src="/build/stencil.esm.js"></script>
+    <script nomodule src="/build/stencil.js"></script>
+
+    <script type="module">
+      // All definitions in this script are used for local testing purposes
+      // only. The IDE Web's SDK implements all this and more
+      import { defineCustomElements } from '/chameleon/esm/loader.js';
+      import { registryProperty } from '/chameleon/esm/index.js';
+      import { getImagePathCallbackDefinitions, registerAssets } from '/mercury/assets-manager.js';
+
+      // Register getImagePath callbacks
+      registryProperty('getImagePathCallback', getImagePathCallbackDefinitions);
+
+      defineCustomElements(window);
+    </script>
+  </head>
+  <body>
+    <script type="module">
+      import { getThemeBundles } from '/mercury/bundles.js';
+      import { registerMercury } from '/mercury/register-mercury.js';
+      registerMercury();
+
+      // mercury theme
+      const themeRef = document.createElement('ch-theme');
+      themeRef.model = getThemeBundles('assets/css/');
+      document.body.appendChild(themeRef);
+
+      // icons
+      const theme2Ref = document.createElement('ch-theme');
+      theme2Ref.avoidFlashOfUnstyledContent = false;
+      theme2Ref.model = [{ name: 'base/icons', url: 'assets/css/base/icons.css' }];
+      document.body.appendChild(theme2Ref);
+    </script>
+    <custom-dialog></custom-dialog>
+  </body>
+</html>
