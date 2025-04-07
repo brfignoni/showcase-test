@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Mercury Showcase
+Ignore assets folder that was copied from Mercury
+/public/assets
